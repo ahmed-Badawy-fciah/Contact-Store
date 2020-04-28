@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/emailcontact' , 'EmailcontacsController@show');
+Route::post('/emailcontact' , 'EmailcontacsController@store');
