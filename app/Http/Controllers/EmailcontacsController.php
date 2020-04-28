@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-
+use App\Mail\Contact;
+use App\Mail\ContactMe;
 class EmailcontacsController extends Controller
 {
     public function show()
@@ -16,10 +16,14 @@ class EmailcontacsController extends Controller
     {
         request()->validate(['email' => 'required|email']);
         
-        Mail::raw('It Works' , function($message){
-            $message->to(request('email'))
-            ->subject('Hello Message!');
-        });
+        // Mail::raw('It Works' , function($message){
+        //     $message->to(request('email'))
+        //     ->subject('Hello Message!');
+        // });
+
+        Mail::to(request('email'))
+        ->send(new Contact());
+
         return redirect('/emailcontact')
         ->with('message' , 'Email sent to ' . request('email') . ' Successfully!');
     }
