@@ -5,36 +5,19 @@ use App\Contact;
 
 Route::group(['middleware' => 'api'] , function(){
     // get all contacts
-    Route::get('contacts',function(){
-        return Contact::all();
-    });
+    Route::get('contacts' , 'ContactsController@index');
     
     // get a spacific contact
-    Route::get('contact/{id}', function($id){
-        return Contact::findOrFail($id);
-    });
+    Route::get('contact/{id}', 'ContactsController@show');
 
     //Create Contact
-    Route::post('contact/store' , function(Request $request){
-        return Contact::create([
-        'name' => $request->input(['name']),
-        'email' => $request->input(['email']),
-        'phone' => $request->input(['phone'])
-        ]);
-    });
+    Route::post('contact/store' , 'ContactsController@store');
 
     //Update Contact
-    Route::patch('contact/{id}' , function(Request $request , $id){
-        return Contact::findOrFail($id)->update(['name' => $request->input(['name']),
-        'email' => $request->input(['email']),
-        'phone' => $request->input(['phone'])
-        ]);
-    });
+    Route::patch('contact/{id}' , 'ContactsController@update');
 
     //Delete Contact
-    Route::delete('contact/{id}',function($id){
-        return Contact::destroy($id);
-    });
+    Route::delete('contact/{id}','ContactsController@destroy');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

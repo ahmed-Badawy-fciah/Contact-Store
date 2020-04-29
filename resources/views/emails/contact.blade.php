@@ -3,8 +3,8 @@
 
 The body of your message.
 
-@component('mail::button', ['url' => 'https://facebook.com/ahmed.ali.badawy22/'])
-My Facebook
+@component('mail::button', ['url' => '/'])
+Our Website
 @endcomponent
 
 Thanks,<br>
