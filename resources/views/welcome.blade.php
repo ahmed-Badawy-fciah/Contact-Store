@@ -7,6 +7,7 @@
     <title>Contact Store</title>
 </head>
 <body>
+    @include('inc.nav')
     <div class="container">
         <hr>
         <div id="app">

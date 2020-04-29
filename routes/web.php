@@ -11,8 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['middleware' => 'auth'] , function(){
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
+    Route::get('/emailcontact' , 'EmailcontacsController@show');
+    Route::post('/emailcontact' , 'EmailcontacsController@store');
 });
-Route::get('/emailcontact' , 'EmailcontacsController@show');
-Route::post('/emailcontact' , 'EmailcontacsController@store');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

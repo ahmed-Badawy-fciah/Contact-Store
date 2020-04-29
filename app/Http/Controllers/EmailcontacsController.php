@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Mail;
+use App\Contact as ContactInfo ;
 use App\Mail\Contact;
 use App\Mail\ContactMe;
 class EmailcontacsController extends Controller
 {
     public function show()
     {
-        return view('emails.show');
+        return view('emails.show' , 
+    ['contacs' => ContactInfo::all()]);
     }
 
     public function store()

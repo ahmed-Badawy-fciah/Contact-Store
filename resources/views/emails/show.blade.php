@@ -7,12 +7,24 @@
     <title>Mail Contact</title>
 </head>
 <body>
-    <div class="text-center fixed-top" style="width:800px; margin:0 auto;">
+    @include('inc.nav')
+    <div class="text-center" style="width:800px; margin:0 auto;">
         <form class="form" action="/emailcontact" method="POST">
             @csrf
-        <div class="form-group mx-sm-3 mb-2">
+        <!-- <div class="form-group mx-sm-3 mb-2">
             <label for="email" class="sr-only">Email</label>
             <input type="text"  class="form-control" name="email" placeholder="email@example.com">
+        </div> -->
+        <div class="form-group">
+            <label for="email">The Website Contacts</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="email">
+                    @forelse($contacs as $contact)
+                        <option value="{{$contact->email}}">{{$contact->name}}</option>
+
+                    @empty
+                        <option value="foo@example.com">foo@example.com</option>
+                    @endforelse
+            </select>
         </div>
         @if(session('message'))
             <div class="text-success text-xs">
